@@ -44,8 +44,19 @@ INSTALLED_APPS = [
     'tracker',
     'integrations',
     'analytics',
-    'rest_framework'
+    'rest_framework',
+    'rest_framework_simplejwt'
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+}
+
+SIMPLE_JWT = {
+    'USER_ID_FIELD': 'user_id',
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

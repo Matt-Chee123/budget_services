@@ -17,6 +17,5 @@ class LoginSerializer(serializers.Serializer):
             raise AuthenticationFailed('Invalid Credentials')
 
         attrs['user'] = user
-        attrs['token'] = 'test'
         return attrs
 
