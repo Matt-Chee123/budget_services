@@ -23,8 +23,8 @@ class LoginView(APIView):
             response = JsonResponse({
                 'message': 'Login Successful'
             })
-            response.set_cookie('access_token',access_token,httponly=True,max_age=30*60)
-            response.set_cookie('refresh_token',refresh_token,httponly=True,max_age=2*60*60)
+            response.set_cookie('access_token',access_token,httponly=True,secure=True,samesite='None',max_age=30*60)
+            response.set_cookie('refresh_token',refresh_token,httponly=True,secure=True,samesite='None',max_age=2*60*60)
             return response
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
