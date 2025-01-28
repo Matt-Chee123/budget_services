@@ -52,9 +52,10 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
 ]
 
+
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'users.auth.CustomJWTAuthentication',  # Update the path based on where you saved it
     ),
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',  # Protect endpoints with JWT auth
@@ -73,6 +74,9 @@ CORS_ALLOWED_ORIGINS = [
 ]
 CORS_ALLOW_CREDENTIALS = True
 
+PASSWORD_HASHERS = [
+    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

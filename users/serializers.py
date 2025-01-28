@@ -12,7 +12,6 @@ class LoginSerializer(serializers.Serializer):
         password = attrs.get('password')
 
         user = authenticate(username=username,password=password)
-
         if not user:
             raise AuthenticationFailed('Invalid Credentials')
 
