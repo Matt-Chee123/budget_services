@@ -17,6 +17,7 @@ class IncomeView(APIView):
     authentication_classes = [CustomJWTAuthentication]
 
     def get(self, request):
-        incomes = Income.objects.all()
+        user_id = request.user.user_id
+        incomes = Income.objects.filter(user=request.user)
         serializer = IncomeSerializer(incomes,many=True)
         return Response(serializer.data,status=status.HTTP_200_OK)
