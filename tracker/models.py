@@ -12,3 +12,4 @@ class Income(models.Model):
 
     class Meta:
         db_table = 'user_income'
+
