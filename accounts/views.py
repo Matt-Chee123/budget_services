@@ -15,7 +15,5 @@ class UserAccountsView(APIView):
     def get(self, request):
         user_id = request.user.user_id
         accounts = Accounts.objects.filter(user=user_id)
-        accountSerializer = AccountsSerializer(data=accounts)
-        print("xxxxxxxxxxxxxxxxxxxxxx",accounts,accountSerializer)
-
-        return Response(accounts)
+        serializer = AccountsSerializer(accounts, many=True)
+        return Response(serializer.data,status=status.HTTP_200_OK)
