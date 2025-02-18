@@ -13,3 +13,12 @@ class Income(models.Model):
     class Meta:
         db_table = 'user_income'
 
+
+class Tax(models.Model):
+    tax_id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=20)
+    country = models.CharField(max_length=30)
+    rate = models.DecimalField(max_digits=5, decimal_places=2)
+    min = models.DecimalField(max_digits=12,decimal_places=2,null=True,blank=True)
+    max = models.DecimalField(max_digits=12,decimal_places=2,null=True,blank=True)
+
