@@ -22,3 +22,11 @@ class Accounts(models.Model):
 
     class Meta:
         db_table = 'accounts'
+
+class Investment(models.Model):
+    model_id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=30)
+    code = models.CharField(max_length=10)
+    account = models.ForeignKey(Accounts, on_delete=models.CASCADE)
+    start_date = models.DateTimeField()
+    initial_value = models.IntegerField()

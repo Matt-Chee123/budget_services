@@ -5,7 +5,9 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from .models import Accounts
+from .models import Investment
 from .serializers import AccountsSerializer
+from .serializers import InvestmentSerializer
 from users.auth import CustomJWTAuthentication
 
 class UserAccountsView(APIView):
@@ -17,3 +19,15 @@ class UserAccountsView(APIView):
         accounts = Accounts.objects.filter(user=user_id)
         serializer = AccountsSerializer(accounts, many=True)
         return Response(serializer.data,status=status.HTTP_200_OK)
+
+class InvestmentsView(APIView):
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [CustomJWTAuthentication]
+
+    def get(self, request):
+        account_uid = request.data.get("account_uid")
+
+        investments = Investment.objects.filter(account__uid=account_uid)
+        serializer = InvestmentSerializer(investments, many=True)
+        print("here", serializer.data)
+        return Response(serializer.data)

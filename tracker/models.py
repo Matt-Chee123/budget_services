@@ -22,3 +22,4 @@ class Tax(models.Model):
     min = models.DecimalField(max_digits=12,decimal_places=2,null=True,blank=True)
     max = models.DecimalField(max_digits=12,decimal_places=2,null=True,blank=True)
 
+
