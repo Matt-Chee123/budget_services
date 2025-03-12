@@ -25,9 +25,11 @@ class InvestmentsView(APIView):
     authentication_classes = [CustomJWTAuthentication]
 
     def get(self, request):
-        account_uid = request.data.get("account_uid")
+        account_uid = request.GET.get("account_uid")  # Fetch from query parameters
+
+        if not account_uid:
+            return Response({"error": "account_uid is required"}, status=400)
 
         investments = Investment.objects.filter(account__uid=account_uid)
         serializer = InvestmentSerializer(investments, many=True)
-        print("here", serializer.data)
         return Response(serializer.data)
